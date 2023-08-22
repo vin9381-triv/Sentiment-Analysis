@@ -23,5 +23,5 @@ This project aims to perform sentiment analysis on news articles related to soci
 
 4. **Sentiment Analysis:**
    - Apply sentiment analysis using the TextBlob library on the fetched articles.
-   - Analyze sentiment scores and patterns for each specific socio-economic issue.
+   - Analyse sentiment scores and patterns for each specific socio-economic issue.
    - Gain insights into how these issues are portrayed and perceived in the news.
