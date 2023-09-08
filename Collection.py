@@ -20,12 +20,11 @@ socio_economic_keywords = [
     {"collection": "Social Mobility", "keywords": ["Social Mobility", "Opportunity Advancement", "Class Movement"]},
     {"collection": "Economic Development", "keywords": ["Economic Development", "Growth of Economy", "Progressive Advancement"]},
     {"collection": "Wealth Distribution", "keywords": ["Wealth Distribution", "Allocation of Resources", "Financial Sharing"]},
-    # Add more entries in the same format for other issues
 ]
 
 # Connect to MongoDB
-client = MongoClient('mongodb://localhost:27017')
-db = client['articles_6_months']
+client = MongoClient('mongodb://host/port')
+db = client['database_name']#replace your database name here
 
 start_date = dt.date(2023, 1, 1)
 end_date = dt.date(2023, 6, 30)
