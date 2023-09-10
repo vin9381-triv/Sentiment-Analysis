@@ -74,7 +74,7 @@ if __name__ == "__main__":
     processor = DataProcessor(source_uri, target_uri)
 
     source_db_name = "final1"
-    target_db_name = "cleandata"
+    target_db_name = "cleaned_data"
 
     processor.process_and_store_data(source_db_name, target_db_name)
     processor.close_connections()
