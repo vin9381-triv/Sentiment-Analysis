@@ -6,3 +6,6 @@ pygooglenews-0.1.2
 Data
 collection_data.ipynb
 .vscode
+.env
+secret.py
+secret2.py
