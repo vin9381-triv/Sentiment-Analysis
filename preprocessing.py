@@ -1,6 +1,7 @@
 import pymongo
 from pymongo import MongoClient
 import re
+import contractions
 from textblob import TextBlob
 import nltk
 nltk.download('punkt')
@@ -17,6 +18,9 @@ class DataProcessor:
         # Lowercasing
         text = text.lower()
 
+        # Expand contractions
+        text = contractions.fix(text)
+
         # Tokenization
         tokens = word_tokenize(text)
 
@@ -24,7 +28,7 @@ class DataProcessor:
         stop_words = set(stopwords.words("english"))
         tokens = [word for word in tokens if word not in stop_words]
 
-        # Punctuation and Number Removal
+        # Remove Special Characters and Numbers
         tokens = [re.sub(r'[^a-zA-Z]', '', word) for word in tokens if word.isalpha()]
 
         # Lemmatization
@@ -45,22 +49,19 @@ class DataProcessor:
             source_collection = source_db[collection_name]
             target_collection = target_db[collection_name]
 
-            # Process and store data
+        # Process and store data
             for entry in source_collection.find():
                 title = entry.get('title', '')
-                published_date = entry.get('published_date', '')
+                summary = entry.get('summary', '')  # Retrieve the "summary" field
 
-                # Preprocess title
-                preprocessed_title = self.preprocess_text(title)
+            # Preprocess the summary field (you can replace 'self.preprocess_text' with your actual preprocessing function)
+                preprocessed_summary = self.preprocess_text(summary)
 
-                # Perform sentiment analysis on the title
-                sentiment_score = TextBlob(preprocessed_title).sentiment.polarity
-
-                # Store the preprocessed data in the target collection
+            # Store the preprocessed data in the target collection
                 target_collection.insert_one({
-                    'title': preprocessed_title,
-                    'published_date': published_date,
-                    'sentiment_score': sentiment_score
+                    'title': title,
+                    'summary': preprocessed_summary,  # Store the preprocessed summary
+                    'published_date': entry.get('published_date', '')
                 })
 
     def close_connections(self):
@@ -74,7 +75,7 @@ if __name__ == "__main__":
     processor = DataProcessor(source_uri, target_uri)
 
     source_db_name = "final1"
-    target_db_name = "cleaned_data"
+    target_db_name = "summarized_clean"
 
     processor.process_and_store_data(source_db_name, target_db_name)
     processor.close_connections()
