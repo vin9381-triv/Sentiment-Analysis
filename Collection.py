@@ -22,12 +22,12 @@ socio_economic_keywords = [
     {"collection": "Wealth Distribution", "keywords": ["Wealth Distribution", "Allocation of Resources", "Financial Sharing"]},
 ]
 
-# Connect to MongoDB
+# Connecting to MongoDB
 client = MongoClient('mongodb://host/port')
-db = client['database_name']#replace your database name here
+db = client['database_name']
 
 start_date = dt.date(2023, 1, 1)
-end_date = dt.date(2023, 6, 30)
+end_date = dt.date(2023, 2, 30)
 
 news = GoogleNews(country = 'in')
 
@@ -56,13 +56,13 @@ for cause in socio_economic_keywords:
                     "title": entry['title'],
                     "link": entry['link'],
                     "published_date": entry.get('published', ''),
-                    # Add more fields as needed
+                    # Adding more fields as needed
                 }
                 collection.insert_one(entry_dict)
 
         sdate = edate + dt.timedelta(days=30)
 
-# Close the MongoDB connection
+# Closing the MongoDB connection
 client.close()
 
 print("Data insertion completed.")

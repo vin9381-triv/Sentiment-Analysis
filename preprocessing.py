@@ -18,7 +18,7 @@ class DataProcessor:
         # Lowercasing
         text = text.lower()
 
-        # Expand contractions
+        # Expanding contractions
         text = contractions.fix(text)
 
         # Tokenization
@@ -28,14 +28,14 @@ class DataProcessor:
         stop_words = set(stopwords.words("english"))
         tokens = [word for word in tokens if word not in stop_words]
 
-        # Remove Special Characters and Numbers
+        # Removing Special Characters and Numbers
         tokens = [re.sub(r'[^a-zA-Z]', '', word) for word in tokens if word.isalpha()]
 
         # Lemmatization
         lemmatizer = WordNetLemmatizer()
         tokens = [lemmatizer.lemmatize(word) for word in tokens]
 
-        # Join tokens back to text
+        # Joining tokens back to text
         preprocessed_text = ' '.join(tokens)
 
         return preprocessed_text
@@ -44,23 +44,23 @@ class DataProcessor:
         source_db = self.source_client[source_db_name]
         target_db = self.target_client[target_db_name]
 
-        # Iterate through collections in the source database
+        # Iterating through collections in the source database
         for collection_name in source_db.list_collection_names():
             source_collection = source_db[collection_name]
             target_collection = target_db[collection_name]
 
-        # Process and store data
+        # Processing and storing data
             for entry in source_collection.find():
                 title = entry.get('title', '')
-                summary = entry.get('summary', '')  # Retrieve the "summary" field
+                summary = entry.get('summary', '')  # Retrieving the "summary" field
 
-            # Preprocess the summary field (you can replace 'self.preprocess_text' with your actual preprocessing function)
+            # Preprocessing the summary field 
                 preprocessed_summary = self.preprocess_text(summary)
 
-            # Store the preprocessed data in the target collection
+            # Storing the preprocessed data in the target collection
                 target_collection.insert_one({
                     'title': title,
-                    'summary': preprocessed_summary,  # Store the preprocessed summary
+                    'summary': preprocessed_summary,  # Storing the preprocessed summary
                     'published_date': entry.get('published_date', '')
                 })
 
