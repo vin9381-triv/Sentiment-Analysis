@@ -27,7 +27,7 @@ client = MongoClient('mongodb://host/port')
 db = client['database_name']
 
 start_date = dt.date(2023, 1, 1)
-end_date = dt.date(2023, 2, 30)
+end_date = dt.date(2023, 2, 1)
 
 news = GoogleNews(country = 'in')
 
@@ -56,7 +56,7 @@ for cause in socio_economic_keywords:
                     "title": entry['title'],
                     "link": entry['link'],
                     "published_date": entry.get('published', ''),
-                    # Adding more fields as needed
+                    
                 }
                 collection.insert_one(entry_dict)
 
