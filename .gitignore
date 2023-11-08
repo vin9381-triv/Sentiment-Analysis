@@ -9,3 +9,4 @@ collection_data.ipynb
 .env
 secret.py
 secret2.py
+sentiment.py
