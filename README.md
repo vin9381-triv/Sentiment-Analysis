@@ -1,12 +1,12 @@
 # Socio-Economic News Sentiment Analysis
 
 ## Overview
-This project aims to perform sentiment analysis on news articles related to socio-economic issues in India. The goal is to understand the sentiment and popularity of specific socio-economic topics mentioned in the articles. The project involves fetching articles, data preprocessing, searching for related articles, and performing sentiment analysis.
+This project aims to perform sentiment analysis on news articles related to socio-economic issues in India. The goal is to understand the sentiment and popularity of specific socio-economic topics mentioned in the articles. The project involves fetching articles, data preprocessing, and finding sentiment.
 
 ## Libraries Used
-- GoogleNews: A Python library to fetch news articles from Google News.
-- Pymongo - A python library to connect to Mongo Db Compass.
-- TextBlob (NLTK): A library for performing sentiment analysis on text data.
+- **GoogleNews**: A Python library to fetch news articles from Google News.
+- **Pymongo**: A Python library to connect to Mongo Db Compass.
+- **TextBlob (NLTK)**: A library for performing sentiment analysis on text data.
 
 ## Installing Libraries
 To get started with the project, you'll need to install the necessary libraries. Here are the installation steps for each library:
@@ -35,7 +35,7 @@ To get started with the project, you'll need to install the necessary libraries.
 
 4. **Manually Installing pygooglenews**:
    
-   If pip command does not work and you have to install the `pygooglenews` package and its dependencies, you can follow these steps:
+   If the pip command does not work, and you have to install the `pygooglenews` package and its dependencies, you can follow these steps:
    
    ```bash
    curl -O https://files.pythonhosted.org/packages/3f/d5/695ef6cd1da80e090534562ba354bc72876438ae91d3693d6bd2afc947df/pygooglenews-0.1.2.tar.gz
@@ -53,7 +53,7 @@ To get started with the project, you'll need to install the necessary libraries.
 ## Approach
 1. **Fetching Articles**:
    - Utilize the GoogleNews library to search for news articles related to socio-economic keywords in India.
-   - Fetch article information including titles, URLs, and snippets.
+   - Fetch article information, including titles, URLs, and snippets.
 
 2. **Data Preprocessing**:
    - Perform data preprocessing to clean and prepare the collected articles for analysis. This may involve:
@@ -63,16 +63,27 @@ To get started with the project, you'll need to install the necessary libraries.
      - Lemmatization or stemming to reduce words to their base form.
      - Handling missing data, if any.
 
-3. **Popularity Assessment**:
-   - Measure the popularity of each socio-economic issue and article by considering factors such as:
-     - Number of articles published on the issue.
-     - Social media shares and engagement for each article (if available).
-     - Reader comments and interactions.
-     - Web traffic metrics, if possible.
+3. **Finding Sentiment**:
+   - Utilize TextBlob from NLTK for sentiment analysis on the preprocessed articles.
+   - Assign sentiment scores (positive, negative, neutral) to each article.
+   - Store the sentiment information in a new database for further analysis.
 
-4. **Visualization and Reporting**:
-   - Create visualizations such as charts and graphs to present the sentiment and popularity analysis results.
-   - Generate reports summarizing the findings, including insights into which socio-economic issues are currently prominent and how they are perceived by the media and the public.
+### Implementation
+- After data preprocessing, loop through the articles and use TextBlob to analyze the sentiment of each article.
+- Store the sentiment scores along with article information (title, URL, etc.) in a new database using Pymongo.
+
+### User Interaction
+- Allow the user to input a socio-economic topic and choose whether they want to see sentiment analysis on an aggregate level or individual article level.
+
+### Example Interaction:
+- User: "Show me sentiment analysis for the topic 'economic reforms' on an aggregate level."
+- System: Display overall sentiment scores, maybe in the form of percentages (e.g., 60% positive, 20% negative, 20% neutral).
+
+- User: "Provide sentiment analysis for individual articles on the topic 'unemployment.'"
+- System: Display a list of articles with their respective sentiment scores (e.g., Article 1: Positive, Article 2: Neutral, Article 3: Negative).
+
+### Additional Consideration
+- Implement error handling for cases where sentiment analysis might not be accurate or if there are issues with data retrieval.
 
 This project aims to provide valuable insights into the sentiment surrounding socio-economic topics in Indian news articles. By analyzing the sentiment and popularity of these topics, it can contribute to a better understanding of public perception and media coverage.
 
