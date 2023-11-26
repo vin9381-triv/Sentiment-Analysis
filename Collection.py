@@ -25,29 +25,21 @@ socio_economic_keywords = [
 # Connecting to MongoDB
 client = MongoClient('mongodb://host/port')
 db = client['database_name']
-
 start_date = dt.date(2023, 1, 1)
 end_date = dt.date(2023, 2, 1)
-
 news = GoogleNews(country = 'in')
-
 for cause in socio_economic_keywords:
     collection_name = cause["collection"]
     keywords = cause["keywords"]
-
     sdate = start_date
     while sdate <= end_date:
         edate = sdate + dt.timedelta(days=30)
         from_date = sdate.strftime('%Y-%m-%d')
         to_date = edate.strftime('%Y-%m-%d')
-
         for keyword in keywords:
             result = news.search(keyword, from_=from_date, to_=to_date)
-  
             time.sleep(5)
-
             collection = db[collection_name]
-
             for entry in result['entries']:
                 entry_dict = {
                     "keyword": keyword,
@@ -55,11 +47,9 @@ for cause in socio_economic_keywords:
                     "to_date": to_date,
                     "title": entry['title'],
                     "link": entry['link'],
-                    "published_date": entry.get('published', ''),
-                    
+                    "published_date": entry.get('published', ''),   
                 }
                 collection.insert_one(entry_dict)
-
         sdate = edate + dt.timedelta(days=30)
 
 # Closing the MongoDB connection
