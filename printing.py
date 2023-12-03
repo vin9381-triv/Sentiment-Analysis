@@ -64,7 +64,7 @@ while True:
         if sentiment_scores_list:
             average_sentiment_score = sum(sentiment_scores_list) / len(sentiment_scores_list)
             average_sentiment_label = get_sentiment_label(average_sentiment_score)
-
+            print(f"\nA")
             print(f"\nAggregate Sentiment Score: {average_sentiment_score}")
             print(f"Aggregate Sentiment Label: {average_sentiment_label}")
         else:
