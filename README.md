@@ -52,22 +52,22 @@ To get started with the project, you'll need to install the necessary libraries.
 
 ## Approach
 1. **Fetching Articles**:
-   - Utilize the GoogleNews library in the `collection.py` script to search for news articles related to socio-economic keywords in India.
+   - Utilize the GoogleNews library in the `Collection.py` script to search for news articles related to socio-economic keywords in India.
    - Fetch article information, including titles, URLs, and snippets.
    - Script: [collection.py](Collection.py)
 
 2. **Data Preprocessing**:
-   - Utilize the `summarizer.py` script to summarize the collected articles.
+   - Utilize the `summarizing.py` script to summarize the collected articles.
    - Perform data preprocessing to clean and prepare the collected articles for analysis. This may involve:
      - Removing HTML tags and irrelevant content.
      - Tokenization: Splitting text into words or phrases.
      - Removing stopwords (common words like "and," "the," "in") to reduce noise.
      - Lemmatization or stemming to reduce words to their base form.
      - Handling missing data, if any.
-   - Script: [summarizer.py](summarizing.py)
+   - Script: [summarizing.py](summarizing.py)
 
 3. **Finding Sentiment**:
-   - Utilize the `data_processor.py` script to preprocess the summarized data.
+   - Utilize the `preprocessing.py` script to preprocess the summarized data.
    - Utilize the `sentiment_analysis.py` script to perform sentiment analysis on the preprocessed articles.
    - Assign sentiment scores (positive, negative, neutral) to each article.
    - Store the sentiment information in a new database for further analysis.
