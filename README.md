@@ -54,7 +54,7 @@ To get started with the project, you'll need to install the necessary libraries.
 1. **Fetching Articles**:
    - Utilize the GoogleNews library in the `collection.py` script to search for news articles related to socio-economic keywords in India.
    - Fetch article information, including titles, URLs, and snippets.
-   - Script: [collection.py](scripts/collection.py)
+   - Script: [collection.py](Collection.py)
 
 2. **Data Preprocessing**:
    - Utilize the `summarizer.py` script to summarize the collected articles.
@@ -64,19 +64,19 @@ To get started with the project, you'll need to install the necessary libraries.
      - Removing stopwords (common words like "and," "the," "in") to reduce noise.
      - Lemmatization or stemming to reduce words to their base form.
      - Handling missing data, if any.
-   - Script: [summarizer.py](scripts/summarizing.py)
+   - Script: [summarizer.py](summarizing.py)
 
 3. **Finding Sentiment**:
    - Utilize the `data_processor.py` script to preprocess the summarized data.
    - Utilize the `sentiment_analysis.py` script to perform sentiment analysis on the preprocessed articles.
    - Assign sentiment scores (positive, negative, neutral) to each article.
    - Store the sentiment information in a new database for further analysis.
-   - Script (Preprocessing): [preprocessing.py](scripts/preprocessing.py)
-   - Script (Sentiment Analysis): [sentiment_analysis.py](scripts/sentiment_analysis.py)
+   - Script (Preprocessing): [preprocessing.py](preprocessing.py)
+   - Script (Sentiment Analysis): [sentiment_analysis.py](sentiment_analysis.py)
 
 4. **User Interaction**:
    - Allow the user to input a socio-economic topic and choose whether they want to see sentiment analysis on an aggregate level or individual article level.
-   - Script: [printing.py](scripts/printing.py)
+   - Script: [printing.py](printing.py)
 
 ### Implementation
 - After data preprocessing, loop through the articles and use TextBlob to analyze the sentiment of each article.
