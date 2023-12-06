@@ -52,35 +52,35 @@ To get started with the project, you'll need to install the necessary libraries.
 
 ## Approach
 1. **Fetching Articles**:
-   - Utilize the GoogleNews library to search for news articles related to socio-economic keywords in India.
+   - Utilize the GoogleNews library in the `collection.py` script to search for news articles related to socio-economic keywords in India.
    - Fetch article information, including titles, URLs, and snippets.
+   - Script: [collection.py](scripts/collection.py)
 
 2. **Data Preprocessing**:
+   - Utilize the `summarizer.py` script to summarize the collected articles.
    - Perform data preprocessing to clean and prepare the collected articles for analysis. This may involve:
      - Removing HTML tags and irrelevant content.
      - Tokenization: Splitting text into words or phrases.
      - Removing stopwords (common words like "and," "the," "in") to reduce noise.
      - Lemmatization or stemming to reduce words to their base form.
      - Handling missing data, if any.
+   - Script: [summarizer.py](scripts/summarizing.py)
 
 3. **Finding Sentiment**:
-   - Utilize TextBlob from NLTK for sentiment analysis on the preprocessed articles.
+   - Utilize the `data_processor.py` script to preprocess the summarized data.
+   - Utilize the `sentiment_analysis.py` script to perform sentiment analysis on the preprocessed articles.
    - Assign sentiment scores (positive, negative, neutral) to each article.
    - Store the sentiment information in a new database for further analysis.
+   - Script (Preprocessing): [preprocessing.py](scripts/preprocessing.py)
+   - Script (Sentiment Analysis): [sentiment_analysis.py](scripts/sentiment_analysis.py)
+
+4. **User Interaction**:
+   - Allow the user to input a socio-economic topic and choose whether they want to see sentiment analysis on an aggregate level or individual article level.
+   - Script: [printing.py](scripts/printing.py)
 
 ### Implementation
 - After data preprocessing, loop through the articles and use TextBlob to analyze the sentiment of each article.
 - Store the sentiment scores along with article information (title, URL, etc.) in a new database using Pymongo.
-
-### User Interaction
-- Allow the user to input a socio-economic topic and choose whether they want to see sentiment analysis on an aggregate level or individual article level.
-
-### Example Interaction:
-- User: "Show me sentiment analysis for the topic 'economic reforms' on an aggregate level."
-- System: Display overall sentiment scores, maybe in the form of percentages (e.g., 60% positive, 20% negative, 20% neutral).
-
-- User: "Provide sentiment analysis for individual articles on the topic 'unemployment.'"
-- System: Display a list of articles with their respective sentiment scores (e.g., Article 1: Positive, Article 2: Neutral, Article 3: Negative).
 
 ### Additional Consideration
 - Implement error handling for cases where sentiment analysis might not be accurate or if there are issues with data retrieval.
@@ -89,4 +89,6 @@ This project aims to provide valuable insights into the sentiment surrounding so
 
 ## Additional Resources
 - For more information about the `pygooglenews` library, visit the [pygooglenews GitHub repository](https://github.com/kotartemiy/pygooglenews).
+- To learn about the `newspaper` library for article extraction, refer to the [newspaper GitHub repository](https://github.com/codelucas/newspaper).
+
 - To learn about the `newspaper` library for article extraction, refer to the [newspaper GitHub repository](https://github.com/codelucas/newspaper).
